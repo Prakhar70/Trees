@@ -1,4 +1,7 @@
 public class Cameras {
+    //0-> cover me
+    //1-> I've camera
+    //2-> No camera, but covered.
     public static int cnt;
     public int minCameraCover(TreeNode root) {
         cnt = 0;
