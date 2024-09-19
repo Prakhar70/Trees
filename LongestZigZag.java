@@ -1,24 +1,24 @@
 class Pair {
-    int maxPathLen;
-    int rightMaxPathLen;
-    int leftMaxPathLen;
+    int llzp;
+    int rlzp;
+    int lzp;
 
     Pair() {
-        this.maxPathLen = 0;
-        this.leftMaxPathLen = 0;
-        this.rightMaxPathLen = 0;
+        this.llzp = 0;
+        this.rlzp = 0;
+        this.lzp = 0;
     }
 
-    Pair(int maxPathLen, int leftMaxPathLen, int rightMaxPathLen) {
-        this.maxPathLen = maxPathLen;
-        this.leftMaxPathLen = leftMaxPathLen;
-        this.rightMaxPathLen = rightMaxPathLen;
+    Pair(int llzp, int rlzp, int lzp) {
+        this.lzp = lzp;
+        this.llzp = llzp;
+        this.rlzp = rlzp;
     }
 }
 
 class LongestZigZag {
     public int longestZigZag(TreeNode root) {
-        return longestZigZag_(root).maxPathLen;
+        return longestZigZag_(root).lzp;
     }
 
     public int max(int... arr) {
@@ -31,14 +31,14 @@ class LongestZigZag {
 
     public Pair longestZigZag_(TreeNode root) {
         if (root == null) {
-            return new Pair(0, -1, -1);
+            return new Pair(-1, -1, 0);
         }
         Pair ln = longestZigZag_(root.left);
         Pair rn = longestZigZag_(root.right);
         Pair ans = new Pair();
-        ans.leftMaxPathLen = ln.rightMaxPathLen + 1;
-        ans.rightMaxPathLen = rn.leftMaxPathLen + 1;
-        ans.maxPathLen = max(ln.maxPathLen, rn.maxPathLen, ans.leftMaxPathLen, ans.rightMaxPathLen);
+        ans.llzp = ln.rlzp + 1;
+        ans.rlzp = rn.llzp + 1;
+        ans.lzp = max(ln.lzp, rn.lzp, ans.llzp, ans.rlzp);
         return ans;
     }
 }
