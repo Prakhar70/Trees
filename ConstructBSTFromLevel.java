@@ -1,5 +1,4 @@
 import java.util.LinkedList;
-import java.util.Queue;
 
 class Pair {
     TreeNode parent;
